@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PROJECT 2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .background {
+            background: rgb(227, 29, 29);
+            background-blend-mode: darken;
+            background-size: cover;
+        }
+
+        .nav-list {
+            width: 70%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 180px;
+            border-radius: 50px;
+        }
+
+        .nav-list li {
+            list-style: none;
+            padding: 26px 30px;
+            padding: 10px;
+        }
+
+        .nav-list li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-list li a:hover {
+            color: rgb(183, 26, 26);
+        }
+
+        .rightnav {
+            width: 30%;
+            text-align: right;
+        }
+
+        #search {
+            padding: 5px;
+            font-size: 17px;
+            border: 2px solid rgb(26, 154, 64);
+            border-radius: 9px;
+        }
+
+        .firstsection {
+            background-color: green;
+            height: 400px;
+        }
+
+        .secondsection {
+            background-color: blue;
+            height: 400px;
+        }
+
+        .box-main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            max-width: 80%;
+            margin: auto;
+            height: 80%;
+        }
+
+        .firsthalf {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .secondhalf {
+            width: 30%;
+        }
+
+        .secondhalf img {
+            width: 70%;
+            border: 4px solid rgb(169, 27, 27);
+            border-radius: 150px;
+            display: block;
+            margin: auto;
+        }
+
+        .text-big {
+            font-family: 'Piazzolla', serif;
+            font-weight: bold;
+            font-size: 35px;
+        }
+
+        .text-small {
+            font-size: 18px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            margin: 7px 0;
+            border: 2px solid rgb(32, 98, 222);
+            border-radius: 8px;
+            background: none;
+            color: rgb(55, 180, 14);
+            cursor: pointer;
+        }
+
+        .btn-sm {
+            padding: 6px 10px;
+            vertical-align: middle;
+        }
+
+        .section {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .section-Left {
+            flex-direction: row-reverse;
+        }
+
+        .paras {
+            padding: 0px 65px;
+        }
+
+        .thumbnail img {
+            width: 250px;
+            border: 2px solid black;
+            border-radius: 26px;
+            margin-top: 19px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .text-footer {
+            text-align: center;
+            padding: 30px 0;
+            font-family: 'Ubuntu', sans-serif;
+            display: flex;
+            justify-content: center;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .rightnav {
+            width: 100%;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        #search {
+            box-sizing: border-box;
+            width: 70%;
+            padding: 8px;
+            font-size: 17px;
+            border: 2px solid rgb(212, 11, 11);
+            border-radius: 9px;
+        }
+
+        .btn-sm {
+            padding: 8px 20px;
+            margin: 7px 5px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar background">
+        <div class="logo">
+            <img src="https://cdn.dribbble.com/users/2286676/screenshots/15848449/media/a78dff4002bf0c37b24a361bee42f109.jpg?resize=400x0" style="height: 150px;" alt="Logo">
+            <ul class="nav-list">
+                <li><a href="#web">Web Technology</a></li>
+                <li><a href="#program">C Programming</a></li>
+                <li><a href="#course">Courses</a></li>
+            </ul>
+            <div class="rightnav">
+                <input type="text" name="search" id="search">
+                <button class="btn btn-sm">Search</button>
+            </div>
+        </div>
+    </nav>
+    <h3 style="background-color:black; text-align: center; width: 100; size: 5;height: 10px;"></h3>
+    <div style="margin: 100px;">
+        <p><b><h1><u>WEB PROGRAMMING:</u></h1></b></p>
+        <p><b><h2> Web programming is the process of creating web pages. During this process, the programmer is in charge of shaping the site according to the demands and needs of the company. Although it is true that as a company, you can decide on certain aspects of the site, the programmer will be in charge of advising you so that the result is the best one possible.</h2></b></p>
+    </div>
+    <div style="margin: 100px;">
+        <b><h1><u>PYTHON:</u></h1></b>
+        <p><h2>This is a high-level and general-purpose language that focuses on code readability. It's one of the most popular beginner languages because of its ease of use, wide application, active community, and freedom of use. Programmers can use it for object-oriented, structured, or functional tasks. Python has a comprehensive standard library, which has earned the language the title "batteries included." The libraries provide tools for many tasks, such as creating internet applications, graphical user interfaces, and data analytics.</h2></p>
+    </div>
+    <div style="margin: 100px;">
+        <b><h1><u>JAVA:</u></h1></b>
+        <p><h2>Developers mostly use Java for web apps' back-end interfaces or general service application programming interfaces (APIs) enhanced by frameworks such as Spring and Dropwizard. Java differs from JavaScript in that it's a strongly typed language, translating to a deeper learning curve. The complexity is an advantage that makes Java have higher performance. Java enforces its performance by multi-thread work that can run concurrently. JavaScript only uses a single thread. Java also balances complexity and performance by avoiding many items that the coder can manage in other languages.</h2></p>
+    </div>
+    <div style="margin: 100px;">
+        <b><h1><u>C:</u></h1></b>
+        <p><h2>C is a low-level language. This means that it requires the programmer to understand the underlying computer hardware. High-level languages have abstracted the computer details. For example, when using a low-level language, your program can take care of memory management in the code. Typically, higher programming languages automate the process of memory management for computers. Although C is low level, it compensates for having better performance than other easy-to-learn languages. While performance might not be a significant concern for a social media app, it's a substantial consideration for gaming apps, movie special effects software, and portions of operating systems.</h2></p>
+    </div>
+    <div style="margin: 100px;">
+        <b><h1><u>SQL:</u></h1></b>
+        <p><h2>Structured Query Language (SQL) is used to query data. Computers send the SQL data queries to a server that responds with the requested data. SQL allows you to retrieve, insert, update, delete, and create data within a database. There are many variants of SQL and all variants have several similarities. The ANSI standard requirement enforces these similarities that the variants include significant commands, such as where, select, and delete.</h2></p>
+    </div>
+</body>
+</html>

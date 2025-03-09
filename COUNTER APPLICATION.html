@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #counter {
+            font-size: 48px;
+            margin: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0000f3;
+            color: rgb(255, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <h1>Counter Application</h1>
+    <div id="counter">0</div>
+    <button id="incrementButton">Increment</button>
+    <button id="decrementButton">Decrement</button>
+    <button id="resetButton">Reset</button>
+
+    <script>
+       
+        const counterDisplay = document.getElementById('counter');
+        const incrementButton = document.getElementById('incrementButton');
+        const decrementButton = document.getElementById('decrementButton');
+        const resetButton = document.getElementById('resetButton');
+
+        let count = 0;
+
+        function updateDisplay() {
+            counterDisplay.textContent = count;
+        }
+
+        incrementButton.addEventListener('click', () => {
+            count++;
+            updateDisplay();
+        });
+
+      
+        decrementButton.addEventListener('click', () => {
+            count--;
+            updateDisplay();
+        });
+
+        resetButton.addEventListener('click', () => {
+            count = 0;
+            updateDisplay();
+        });
+        updateDisplay();
+    </script>
+</body>
+</html>

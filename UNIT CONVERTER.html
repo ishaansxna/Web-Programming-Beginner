@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #fdc830, #f37335);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #f37335;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #fdc830;
+            box-shadow: 0 0 8px rgba(253, 200, 48, 0.5);
+            outline: none;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            background: #f37335;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #fdc830;
+            transform: translateY(-3px);
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: bold;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #result:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unit Converter</h1>
+        <input type="number" id="inputValue" placeholder="Enter value" />
+        <select id="unit">
+            <option value="km">Kilometers to Miles</option>
+            <option value="miles">Miles to Kilometers</option>
+        </select>
+        <button onclick="convert()">Convert</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function convert() {
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+            const unit = document.getElementById('unit').value;
+            let result;
+
+            if (isNaN(inputValue)) {
+                document.getElementById('result').innerText = "Please enter a valid number.";
+                return;
+            }
+
+            if (unit === 'km') {
+                result = inputValue * 0.621371; 
+                document.getElementById('result').innerText = `${inputValue} km = ${result.toFixed(2)} miles`;
+            } else {
+                result = inputValue * 1.60934; 
+                document.getElementById('result').innerText = `${inputValue} miles = ${result.toFixed(2)} km`;
+            }
+        }
+    </script>
+</body>
+</html>

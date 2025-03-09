@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modern Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Arial', sans-serif;
+        }
+        .calculator {
+            background: #2c3e50;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 320px;
+        }
+        .display {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 20px;
+            text-align: right;
+            font-size: 2.5em;
+            border-bottom: 2px solid #1a252f;
+        }
+        .display input {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: inherit;
+            font-size: 1em;
+            text-align: right;
+            outline: none;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+        }
+        .btn {
+            border: none;
+            font-size: 1.5em;
+            padding: 20px;
+            cursor: pointer;
+            background: #34495e;
+            color: #ecf0f1;
+            transition: background 0.3s ease;
+        }
+        .btn:hover { background: #3d566e; }
+        .btn.operator { background: #e67e22; }
+        .btn.operator:hover { background: #d35400; }
+        .btn.equal { background: #2ecc71; grid-column: span 2; } 
+        .btn.equal:hover { background: #27ae60; }
+        .btn.clear { background: #e74c3c; grid-column: span 4; } 
+        .btn.clear:hover { background: #c0392b; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="display" readonly>
+        </div>
+        <div class="buttons">
+            <button class="btn" onclick="appendNumber('0')">0</button>
+            <button class="btn" onclick="appendNumber('1')">1</button>
+            <button class="btn" onclick="appendNumber('2')">2</button>
+            <button class="btn operator" onclick="appendOperator('+')">+</button>
+            <button class="btn" onclick="appendNumber('3')">3</button>
+            <button class="btn" onclick="appendNumber('4')">4</button>
+            <button class="btn" onclick="appendNumber('5')">5</button>
+            <button class="btn operator" onclick="appendOperator('-')">-</button>
+            <button class="btn" onclick="appendNumber('6')">6</button>
+            <button class="btn" onclick="appendNumber('7')">7</button>
+            <button class="btn" onclick="appendNumber('8')">8</button>
+            <button class="btn operator" onclick="appendOperator('*')">*</button>
+            <button class="btn" onclick="appendNumber('9')">9</button>
+            <button class="btn equal" onclick="calculate()">=</button> 
+            <button class="btn operator" onclick="appendOperator('/')">/</button>
+            <button class="btn clear" onclick="clearDisplay()">C</button> 
+        </div>
+    </div>
+    <script>
+        let currentInput = '';
+        function appendNumber(number) {
+            currentInput += number;
+            document.getElementById('display').value = currentInput;
+        }
+        function appendOperator(operator) {
+            currentInput += ' ' + operator + ' ';
+            document.getElementById('display').value = currentInput;
+        }
+        function calculate() {
+            try {
+                let result = eval(currentInput);
+                document.getElementById('display').value = result;
+                currentInput = result;
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+                currentInput = '';
+            }
+        }
+        function clearDisplay() {
+            currentInput = '';
+            document.getElementById('display').value = '';
+        }
+    </script>
+</body>
+</html>

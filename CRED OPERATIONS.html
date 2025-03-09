@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grocery List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #4d17e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #1dcb43;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(226, 241, 16, 0.1);
+            padding: 20px;
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #0da71f;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #ecec0f;
+            border: none;
+            border-radius: 4px;
+            color: #2614c4;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #285ce0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        button.remove, button.edit {
+            background: #dc3545;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 5px 10px;
+            margin-left: 5px;
+        }
+
+        button.remove:hover {
+            background: #c82333;
+        }
+
+        button.edit {
+            background: #007bff;
+        }
+
+        button.edit:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Grocery List</h1>
+        <div class="input-group">
+            <input type="text" id="productIdInput" placeholder="Product ID">
+            <input type="text" id="itemNameInput" placeholder="Item name">
+            <input type="number" id="quantityInput" placeholder="Quantity" min="1">
+            <input type="number" id="priceInput" placeholder="Price" step="0.01" min="0">
+            <button id="addItemButton">Add Item</button>
+        </div>
+        <ul id="groceryList"></ul>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addItemButton = document.getElementById('addItemButton');
+            const productIdInput = document.getElementById('productIdInput');
+            const itemNameInput = document.getElementById('itemNameInput');
+            const quantityInput = document.getElementById('quantityInput');
+            const priceInput = document.getElementById('priceInput');
+            const groceryList = document.getElementById('groceryList');
+            
+            let editIndex = null;
+
+            function renderList() {
+                groceryList.innerHTML = ''; 
+                items.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <div class="item-details">
+                            <span>ID: ${item.id} | ${item.name} (x${item.quantity}) | $${item.price.toFixed(2)}</span>
+                        </div>
+                        <button class="edit" data-index="${index}">Edit</button>
+                        <button class="remove" data-index="${index}">Remove</button>
+                    `;
+                    groceryList.appendChild(li);
+                });
+                
+                document.querySelectorAll('button.edit').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = button.getAttribute('data-index');
+                        editItem(index);
+                    });
+                });
+                
+                document.querySelectorAll('button.remove').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = button.getAttribute('data-index');
+                        removeItem(index);
+                    });
+                });
+            }
+
+            function addItem(id, name, quantity, price) {
+                if (editIndex !== null) {
+                    items[editIndex] = { id, name, quantity, price };
+                    editIndex = null;
+                } else {
+                    items.push({ id, name, quantity, price });
+                }
+                productIdInput.value = '';
+                itemNameInput.value = '';
+                quantityInput.value = '';
+                priceInput.value = '';
+                renderList();
+            }
+
+            function removeItem(index) {
+                items.splice(index, 1);
+                renderList();
+            }
+
+            function editItem(index) {
+                productIdInput.value = items[index].id;
+                itemNameInput.value = items[index].name;
+                quantityInput.value = items[index].quantity;
+                priceInput.value = items[index].price;
+                editIndex = index;
+            }
+
+            const items = [];
+
+            addItemButton.addEventListener('click', function() {
+                const id = productIdInput.value.trim();
+                const name = itemNameInput.value.trim();
+                const quantity = parseInt(quantityInput.value.trim(), 10);
+                const price = parseFloat(priceInput.value.trim());
+                
+                if (id !== '' && name !== '' && quantity > 0 && price >= 0) {
+                    addItem(id, name, quantity, price);
+                } else {
+                    alert('Please enter valid values for all fields.');
+                }
+            });
+
+            [productIdInput, itemNameInput, quantityInput, priceInput].forEach(input => {
+                input.addEventListener('keypress', function(event) {
+                    if (event.key === 'Enter') {
+                        addItemButton.click();
+                    }
+                });
+            });
+
+            renderList();
+        });
+    </script>
+</body>
+</html>

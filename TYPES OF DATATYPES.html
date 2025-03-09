@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Data Type Checker</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            color: #ff4757;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff6b81;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript Data Type Checker</h1>
+        <input type="text" id="userInput" placeholder="Enter a value">
+        <button onclick="checkDataType()">Check Data Type</button>
+        <div id="output"></div>
+    </div>
+    <script>
+        function checkDataType() {
+            const userInput = document.getElementById('userInput').value.trim();
+            const output = document.getElementById('output');
+
+            if (userInput === "") {
+                output.innerHTML = "<p>Please enter a value.</p>";
+                return;
+            }
+
+            let dataType;
+            let parsedValue;
+
+
+            if (!isNaN(userInput)) {
+                dataType = "number";
+                parsedValue = parseFloat(userInput);
+            }
+      
+            else if (userInput.toLowerCase() === "true" || userInput.toLowerCase() === "false") {
+                dataType = "boolean";
+                parsedValue = userInput.toLowerCase() === "true";
+            }
+       
+            else if (userInput.startsWith('[') && userInput.endsWith(']')) {
+                try {
+                    parsedValue = JSON.parse(userInput);
+                    if (Array.isArray(parsedValue)) {
+                        dataType = "array";
+                    } else {
+                        dataType = "object";
+                    }
+                } catch (e) {
+                    dataType = "string";
+                    parsedValue = userInput;
+                }
+            }
+            else if (userInput.startsWith('{') && userInput.endsWith('}')) {
+                try {
+                    parsedValue = JSON.parse(userInput);
+                    dataType = "object";
+                } catch (e) {
+                    dataType = "string";
+                    parsedValue = userInput;
+                }
+            }
+            else {
+                dataType = "string";
+                parsedValue = userInput;
+            }
+
+            output.innerHTML = `
+                <p><strong>Input:</strong> ${userInput}</p>
+                <p><strong>Data Type:</strong> ${dataType}</p>
+                <p><strong>Parsed Value:</strong> ${JSON.stringify(parsedValue)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

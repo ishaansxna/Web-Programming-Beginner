@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Collection</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        #bookList {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+
+        .book {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .book:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Book Collection</h1>
+        <div id="bookList"></div>
+
+        <h2>Add a New Book</h2>
+        <input type="text" id="titleInput" placeholder="Book Title" />
+        <input type="text" id="authorInput" placeholder="Author" />
+        <input type="text" id="yearInput" placeholder="Publication Year" />
+        <button id="addBookButton">Add Book</button>
+    </div>
+
+    <script>
+     
+        function Book(title, author, year) {
+            this.title = title;
+            this.author = author;
+            this.year = year;
+
+            this.getDetails = function() {
+                return `${this.title} by ${this.author} (${this.year})`;
+            };
+        }
+
+        const bookCollection = [];
+
+     
+        const bookList = document.getElementById('bookList');
+        const addBookButton = document.getElementById('addBookButton');
+        const titleInput = document.getElementById('titleInput');
+        const authorInput = document.getElementById('authorInput');
+        const yearInput = document.getElementById('yearInput');
+
+     
+        function displayBooks() {
+            bookList.innerHTML = '';
+            bookCollection.forEach(book => {
+                const bookDiv = document.createElement('div');
+                bookDiv.className = 'book';
+                bookDiv.textContent = book.getDetails();
+                bookList.appendChild(bookDiv);
+            });
+        }
+
+        addBookButton.addEventListener('click', () => {
+            const title = titleInput.value.trim();
+            const author = authorInput.value.trim();
+            const year = yearInput.value.trim();
+
+            if (title && author && year) {
+                const newBook = new Book(title, author, year);
+                bookCollection.push(newBook);
+                displayBooks();
+
+             
+                titleInput.value = '';
+                authorInput.value = '';
+                yearInput.value = '';
+            } else {
+                window.alert('Please fill in all fields!');
+            }
+        });
+
+
+        displayBooks();
+    </script>
+</body>
+</html>
